@@ -4,6 +4,11 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class BotMain extends TelegramLongPollingBot {
+
+    public static final String BOT_NAME = "";
+    public static final String BOT_TOKEN = "";
+
+
     @Override
     public String getBotUsername() {
         return null;
