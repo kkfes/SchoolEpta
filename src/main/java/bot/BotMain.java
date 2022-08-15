@@ -7,8 +7,9 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class BotMain extends TelegramLongPollingBot {
 
-    public static final String BOT_NAME = "scholotron_bot";
-    public static final String BOT_TOKEN = "5478245744:AAGItaRwXXMfIpdYezpmLbosLIfZBXf2mUs";
+    public static final String BOT_NAME = "school_epta_bot";
+    public static final String BOT_TOKEN = "5682624114:AAGtIFToxdc2yWtIMAG-EhjCcDLvSKAS2D4";
+    public long user;
 
 
     @Override
@@ -37,10 +38,32 @@ public class BotMain extends TelegramLongPollingBot {
     }
 
 
-    public static String messageListener(String message){
-        if(message.equals("/start")){
-            return "\uD83D\uDC4B";
+    public  String messageListener(String message){
+        if(message.equals("/start")) {
+            return "Привет , даный бот находиться на стадии разработки,идеи писать в /idea (по школьной теме) ";
+        }
+        if(message.startsWith("/idea")){
+            sendMessageTo(String.valueOf(-1001704646260L),
+                    "<b>Новая идея от пользователя @"  + " #idea</b>\n<i>" + message+"</i>");
+            return "✅ Спасибо, ваша идея на рассмотрении";
+        }
+        if(message.equals("")){
+            return "Привет , даный бот находиться на стадии разработкиб,";
         }
         return "\uD83E\uDD37\u200D♂️";
+    }
+    public boolean sendMessageTo(String chatId, String msg) {
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setParseMode("HTML");
+        sendMessage.setText(msg);
+        sendMessage.setChatId(chatId);
+        sendMessage.setDisableWebPagePreview(true);
+        try {
+            execute(sendMessage);
+            return true;
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
