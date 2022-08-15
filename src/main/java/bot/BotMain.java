@@ -27,7 +27,7 @@ public class BotMain extends TelegramLongPollingBot {
         if(update.hasMessage()&&update.getMessage().hasText()){
             SendMessage sendMessage = new SendMessage();
             sendMessage.setParseMode("HTML");
-            sendMessage.setText(messageListener(update.getMessage().getText()));
+            sendMessage.setText(messageListener(update.getMessage().getText(),update.getMessage().getFrom().getId()));
             sendMessage.setChatId(String.valueOf(update.getMessage().getChatId()));
             try {
                 execute(sendMessage);
@@ -38,13 +38,13 @@ public class BotMain extends TelegramLongPollingBot {
     }
 
 
-    public  String messageListener(String message){
+    public  String messageListener(String message,long user_ud){
         if(message.equals("/start")) {
             return "Привет , даный бот находиться на стадии разработки,идеи писать в /idea (по школьной теме) ";
         }
         if(message.startsWith("/idea")){
             sendMessageTo(String.valueOf(-1001704646260L),
-                    "<b>Новая идея от пользователя @"  + " #idea</b>\n<i>" + message+"</i>");
+                    "<b>Новая идея от пользователя @"  +user_ud+ " #idea</b>\n<i>" + message+"</i>");
             return "✅ Спасибо, ваша идея на рассмотрении";
         }
         if(message.equals("")){
