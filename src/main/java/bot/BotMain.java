@@ -48,7 +48,6 @@ public class BotMain extends TelegramLongPollingBot {
             sendMessageTo(String.valueOf(-1001704646260L),
                     "<b>Новая идея от пользователя @"  +user_ud+ " #idea</b>\n<i>" + message+"</i>");
             return "✅ Спасибо, ваша идея на рассмотрении";
-
         }else if(message.equalsIgnoreCase("пинг")){
             return "та вроде всё робит";
         }else if(message.equalsIgnoreCase("профиль")){
