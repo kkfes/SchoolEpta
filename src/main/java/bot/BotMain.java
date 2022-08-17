@@ -1,6 +1,5 @@
 package bot;
 
-import bot.objects.Users;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -26,12 +25,10 @@ public class BotMain extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         if(update.hasMessage()&&update.getMessage().hasText()){
-            Users.add(update.getMessage().getFrom().getId(),update.getMessage().getFrom().getFirstName(),update.getMessage().getFrom().getUserName());
             SendMessage sendMessage = new SendMessage();
             sendMessage.setParseMode("HTML");
             sendMessage.setText(messageListener(update.getMessage().getText(),update.getMessage().getFrom().getId()));
             sendMessage.setChatId(String.valueOf(update.getMessage().getChatId()));
-            sendMessage.setDisableWebPagePreview(true);
             try {
                 execute(sendMessage);
             } catch (TelegramApiException e) {
@@ -41,19 +38,17 @@ public class BotMain extends TelegramLongPollingBot {
     }
 
 
-    public String messageListener(String message,long user_ud){
+    public  String messageListener(String message,long user_ud){
         if(message.equals("/start")) {
             return "Привет , даный бот находиться на стадии разработки,идеи писать в /idea (по школьной теме) ";
-        }else if(message.startsWith("/idea")){
+        }
+        if(message.startsWith("/idea")){
             sendMessageTo(String.valueOf(-1001704646260L),
                     "<b>Новая идея от пользователя @"  +user_ud+ " #idea</b>\n<i>" + message+"</i>");
             return "✅ Спасибо, ваша идея на рассмотрении";
-        }else if(message.equalsIgnoreCase("пинг")){
-            return "та вроде всё робит";
-        }else if(message.equalsIgnoreCase("профиль")){
-            return Users.profile(user_ud);
-        }else if(message.equalsIgnoreCase("школа")){
-            return Users.goToSchool(user_ud);
+        }
+        if(message.equals("")){
+            return "Привет , даный бот находиться на стадии разработкиб,";
         }
         return "\uD83E\uDD37\u200D♂️";
     }
