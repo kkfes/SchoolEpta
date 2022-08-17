@@ -50,7 +50,7 @@ public class BotMain extends TelegramLongPollingBot {
         if(message.equals("")){
             return "Привет , даный бот находиться на стадии разработки,";
         }
-        return "\uD83E\uDD37\u200D♂️";
+        return "";
     }
     public boolean sendMessageTo(String chatId, String msg) {
         SendMessage sendMessage = new SendMessage();
