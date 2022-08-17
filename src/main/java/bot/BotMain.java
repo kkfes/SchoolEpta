@@ -48,7 +48,7 @@ public class BotMain extends TelegramLongPollingBot {
             return "✅ Спасибо, ваша идея на рассмотрении";
         }
         if(message.equals("")){
-            return "Привет , даный бот находиться на стадии разработкиб,";
+            return "Привет , даный бот находиться на стадии разработки,";
         }
         return "\uD83E\uDD37\u200D♂️";
     }
