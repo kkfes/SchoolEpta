@@ -184,6 +184,7 @@ public class Users {
                 int bal = new Random().nextInt(10);
                 users.setExperience(users.getExperience()+exp);
                 users.setBalance(users.getBalance()+bal);
+                users.setLesson(0);
                 users.save();
                 return "\uD83D\uDE15 Ты весь измотанный пришел со школе домой, А СТОП, у тебя нет дома, ты пришел на свалку.\n" +
                         "+"+bal+" \uD83C\uDF15 монет\n" +
