@@ -55,7 +55,7 @@ public class BotMain extends TelegramLongPollingBot {
         }else if(message.equalsIgnoreCase("школа")){
             return Users.goToSchool(user_ud);
         }
-        return "\uD83E\uDD37\u200D♂️";
+        return "";
     }
     public boolean sendMessageTo(String chatId, String msg) {
         SendMessage sendMessage = new SendMessage();
