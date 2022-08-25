@@ -181,14 +181,18 @@ public class Users {
         }else {
             if (System.currentTimeMillis() / 1000 >= users.lesson) {
                 int exp = new Random().nextInt(5);
+                boolean to = Inventory.hastem(id,1);
+                if(to){
+                    exp=exp*exp;
+                }
                 int bal = new Random().nextInt(10);
                 users.setExperience(users.getExperience()+exp);
                 users.setBalance(users.getBalance()+bal);
                 users.setLesson(0);
                 users.save();
                 return "\uD83D\uDE15 Ты весь измотанный пришел со школе домой, А СТОП, у тебя нет дома, ты пришел на свалку.\n" +
-                        "+"+bal+" \uD83C\uDF15 монет\n" +
-                        "+"+exp+" \uD83D\uDD06 опыт";
+                        "+"+bal+" \uD83C\uDF15 монет \n" +
+                        "+"+exp+" \uD83D\uDD06 опыт "+(to?"x2 \uD83D\uDCDA":"");
             } else {
                 return "Ты как бы уже в школе, не спи и учи уроки, вернешься через " + ((users.lesson - System.currentTimeMillis() / 1000)) / 60 + " мин";
             }
