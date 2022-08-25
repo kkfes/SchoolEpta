@@ -43,7 +43,7 @@ public class Inventory {
                 if(item.id==0){
                     Book book = (Book) item;
                     book.use(user_id,chat_id);
-                }else {
+                }else if(item.id==1){
                     Books book = (Books) item;
                     book.use(user_id,chat_id);
                 }
