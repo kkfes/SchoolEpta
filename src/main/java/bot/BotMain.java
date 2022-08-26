@@ -60,9 +60,9 @@ public class BotMain extends TelegramLongPollingBot {
             return Users.profile(user_id);
         }else if(message.equalsIgnoreCase("школа")){
             return Users.goToSchool(user_id);
-        }else if(message.equalsIgnoreCase("потрфель")||message.equalsIgnoreCase("сумка")){
+        }else if(message.equalsIgnoreCase("портфель")||message.equalsIgnoreCase("Рюкзак")){
             return Inventory.getInventory(user_id);
-        }else if(message.toLowerCase().startsWith("гопник ")){
+        }else if(message.toLowerCase().startsWith("буфет ")){
             Inventory.buyItem(message.substring(message.indexOf(" ")+1,message.lastIndexOf(" ")),user_id,chat_id,Integer.parseInt(message.substring(message.lastIndexOf(" ")+1)));
             return null;
         }else if(message.toLowerCase().startsWith("использовать ")){

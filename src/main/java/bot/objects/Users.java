@@ -162,7 +162,7 @@ public class Users {
             return "⚠️ ERROR: You don't exist in this life.";
         }
         String text = "<b>\uD83D\uDCD6 Профиль ученика "+users.link()+"\n" +
-                "\uD83C\uDF15 Монет:</b> <code>"+users.balance+"</code>\n" +
+                "\uD83D\uDCB5 Лун:</b> <code>"+users.balance+"</code>\n" +
                 "<b>\uD83D\uDCD0 УР. Знания:</b> <code>"+users.knowledge+"</code>\n" +
                 users.getProfileExperience()+"\n"+
                 (users.lesson==0?"\uD83D\uDE1D Бездельничает":"✅ На занятиях");

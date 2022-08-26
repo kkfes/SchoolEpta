@@ -5,6 +5,7 @@ import bot.DBManager;
 import bot.objects.items.Book;
 import bot.objects.items.Books;
 import bot.objects.items.Item;
+import bot.objects.items.gosha;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,8 +26,9 @@ public class Inventory {
         }catch (Exception e){
             e.printStackTrace();
         }
-        ids.add(new Book(0,"\uD83D\uDCD5","Книга, уменьшает время в школе на 3 минуты",30));
-        ids.add(new Books(1,"\uD83D\uDCDA","Учебники, повышает процент знаний в два раза",1000));
+        ids.add(new Book(0,"\uD83D\uDCD3","Книга, уменьшает время в школе на 3 минуты",1));
+        ids.add(new Books(1,"\uD83D\uDCDA","Учебники, повышает процент знаний в два раза",1));
+        ids.add(new gosha(2,"\uD83E\uDEB4","это гоша дальше хз",1));
     }
 
     public static void useItem(String emoji,long user_id,long chat_id,long reply){
