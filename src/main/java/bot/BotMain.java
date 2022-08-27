@@ -75,6 +75,8 @@ public class BotMain extends TelegramLongPollingBot {
         }else if(message.startsWith("дать")){
             Inventory.give(user_id,update.getMessage().getReplyToMessage().getFrom().getId(),chat_id,message.substring(message.indexOf(" ")+1,message.lastIndexOf(" ")),Integer.parseInt(message.substring(message.lastIndexOf(" ")+1)));
             return null;
+        }else if(message.startsWith("магазин")){
+            return Inventory.shop();
         }
         return "";
     }
