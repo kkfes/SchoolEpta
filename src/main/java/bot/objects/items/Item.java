@@ -5,6 +5,7 @@ public class Item {
     public String emoji;
     public int cost;
     public String text;
+    public boolean shop;
 
     @Override
     public String toString() {
@@ -13,6 +14,7 @@ public class Item {
                 ", emoji='" + emoji + '\'' +
                 ", cost=" + cost +
                 ", text='" + text + '\'' +
+                ", shop=" + shop +
                 '}';
     }
 }

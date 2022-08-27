@@ -72,6 +72,9 @@ public class BotMain extends TelegramLongPollingBot {
                 Inventory.useItem(message.substring(message.indexOf(" ")+1),user_id,chat_id,user_id);
             }
             return null;
+        }else if(message.startsWith("дать")){
+            Inventory.give(user_id,update.getMessage().getReplyToMessage().getFrom().getId(),chat_id,message.substring(message.indexOf(" ")+1,message.lastIndexOf(" ")),Integer.parseInt(message.substring(message.lastIndexOf(" ")+1)));
+            return null;
         }
         return "";
     }

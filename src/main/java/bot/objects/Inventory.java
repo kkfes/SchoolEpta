@@ -5,7 +5,7 @@ import bot.DBManager;
 import bot.objects.items.Book;
 import bot.objects.items.Books;
 import bot.objects.items.Item;
-import bot.objects.items.gosha;
+import bot.objects.items.Gosha;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,9 +26,9 @@ public class Inventory {
         }catch (Exception e){
             e.printStackTrace();
         }
-        ids.add(new Book(0,"\uD83D\uDCD3","Книга, уменьшает время в школе на 3 минуты",1));
-        ids.add(new Books(1,"\uD83D\uDCDA","Учебники, повышает процент знаний в два раза",1));
-        ids.add(new gosha(2,"\uD83E\uDEB4","это гоша дальше хз",1));
+        ids.add(new Book(0,"\uD83D\uDCD3","Книга, уменьшает время в школе на 3 минуты",1,true));
+        ids.add(new Books(1,"\uD83D\uDCDA","Учебники, повышает процент знаний в два раза",1,true));
+        ids.add(new Gosha(2,"\uD83E\uDEB4","Это гоша дальше хз",1,true));
     }
 
     public static void useItem(String emoji,long user_id,long chat_id,long reply){
@@ -200,15 +200,45 @@ public class Inventory {
         if(item==null){
             new BotMain().sendMessageTo(String.valueOf(chat_id),"❎ Такого предмета не существует");
         }else {
-            if(u.getBalance()>=item.cost){
-                addItem(user_id,item.id,how);
-                u.setBalance(u.getBalance()-item.cost);
-                u.save();
-                new BotMain().sendMessageTo(String.valueOf(chat_id),"✅ Вы купили "+item.emoji);
+            if(item.shop) {
+                int cost = item.cost * how;
+                if (u.getBalance() >= cost) {
+                    addItem(user_id, item.id, how);
+                    u.setBalance(u.getBalance() - cost);
+                    u.save();
+                    new BotMain().sendMessageTo(String.valueOf(chat_id), "✅ Вы купили " + item.emoji + " " + how);
+                } else {
+                    new BotMain().sendMessageTo(String.valueOf(chat_id), "❎ Не хватает монет для покупки");
+                }
             }else {
-                new BotMain().sendMessageTo(String.valueOf(chat_id),"❎ Не хватает монет для покупки");
+                new BotMain().sendMessageTo(String.valueOf(chat_id), "❎ Этот товар нельзя купить");
             }
         }
+    }
+
+    public static void give(long id1,long id2,long chat_id,String emoji,int how){
+        Item item = getItemId(emoji);
+        Users u = Users.get(id1);
+        if(item==null){
+            new BotMain().sendMessageTo(String.valueOf(chat_id),"❎ Такого предмета не существует");
+        }else {
+            if(getItem(id1,item.id,how)){
+                addItem(id2,item.id,how);
+                new BotMain().sendMessageTo(String.valueOf(chat_id),"✅ Передано");
+            }else {
+                new BotMain().sendMessageTo(String.valueOf(chat_id),"❎ Не хватает");
+            }
+        }
+    }
+
+    public static String shop(){
+        String text = "Буфет\n";
+        for (Item i:ids){
+            if(i.shop){
+                text+=i.emoji+" "+i.text+" "+i.cost;
+            }
+        }
+        return text;
     }
 
     public static String getInventory(long user_id){

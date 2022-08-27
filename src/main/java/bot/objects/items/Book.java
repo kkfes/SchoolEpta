@@ -8,11 +8,12 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class Book extends Item{
 
-    public Book(long id,String emoji,String text,int cost) {
+    public Book(long id,String emoji,String text,int cost,boolean shop) {
         this.id=id;
         this.emoji=emoji;
         this.text=text;
         this.cost=cost;
+        this.shop=shop;
     }
 
     public void use(long id,long chat_id){
