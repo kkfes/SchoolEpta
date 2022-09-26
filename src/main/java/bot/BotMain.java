@@ -9,8 +9,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class BotMain extends TelegramLongPollingBot {
 
-    public static final String BOT_NAME = "school_epta_bot";
-    public static final String BOT_TOKEN = "5682624114:AAGtIFToxdc2yWtIMAG-EhjCcDLvSKAS2D4";
+    public static final String BOT_NAME = "BOT_NAME";
+    public static final String BOT_TOKEN = "BOT_TOKEN";
     public long user;
 
 
